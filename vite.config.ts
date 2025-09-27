@@ -30,7 +30,7 @@ const AUCTION_ITEMS = [
     id: "replicant-badge",
     name: "Blade Runner Police Badge",
     description:
-      "Rick Deckard's LAPD badge from Blade Runner 2019. Includes encrypted access to the Tyrell Corporation database.",
+      "Rick Deckard's LAPD badge from Blade Runner circa 2019. Includes encrypted access to the Tyrell Corporation database.",
     movie: "Blade Runner",
     startingPrice: 15000,
     rarity: "rare" as const,
@@ -107,9 +107,8 @@ class SharedAuctionState {
       // Start first auction after 5 seconds
       setTimeout(() => this.startNewAuction(), 5000);
 
-      // Periodically clean up dead connections (every 30 seconds)
-      // DISABLED: Too aggressive - removes inactive tabs
-      // setInterval(() => this.cleanupDeadConnections(), 30000);
+      // Periodically clean up dead connections (every 10 minutes)
+      setInterval(() => this.cleanupDeadConnections(), 10 * 60 * 1000);
     }
   }
 
@@ -696,37 +695,6 @@ class AuctionServer extends RpcTarget {
         });
       }
     }
-  }
-
-  // Legacy methods for the old websocket test (keep for compatibility)
-  hello(name: string) {
-    return `Hello, ${name}! Welcome to the Galactic Auction House!`;
-  }
-
-  echo(data: any) {
-    return {
-      type: "auction_echo",
-      originalData: data,
-      serverTime: new Date().toISOString(),
-      message: "Echoed from auction server",
-    };
-  }
-
-  async registerCallback(_callback: Function) {
-    // For compatibility, just add to generic callbacks
-    return "Callback registered (use joinAuction for auction features)";
-  }
-
-  getServerStats() {
-    return {
-      uptime: process.uptime(),
-      memoryUsage: process.memoryUsage(),
-      activeClients: globalAuction.clients.size,
-      nodeVersion: process.version,
-      currentAuction: globalAuction.auctionState.item?.name || "None",
-      totalAuctions: globalAuction.auctionHistory.length,
-      timestamp: new Date().toISOString(),
-    };
   }
 }
 
