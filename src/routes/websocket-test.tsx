@@ -504,9 +504,11 @@ function WebSocketTest() {
           <p>
             WebSocket endpoint:{" "}
             <code className="bg-gray-800 px-2 py-1 rounded">
-              {`${window.location.protocol === "https:" ? "wss:" : "ws:"}//${
-                window.location.host
-              }/api/websocket`}
+              {typeof window !== "undefined"
+                ? `${window.location.protocol === "https:" ? "wss:" : "ws:"}//${
+                    window.location.host
+                  }/api/websocket`
+                : "ws://localhost:3000/api/websocket"}
             </code>
           </p>
         </div>

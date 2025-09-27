@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WebsocketTestRouteImport } from './routes/websocket-test'
+import { Route as AuctionRouteImport } from './routes/auction'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiDemoNamesRouteImport } from './routes/api.demo-names'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo.start.server-funcs'
@@ -18,6 +19,11 @@ import { Route as DemoStartApiRequestRouteImport } from './routes/demo.start.api
 const WebsocketTestRoute = WebsocketTestRouteImport.update({
   id: '/websocket-test',
   path: '/websocket-test',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuctionRoute = AuctionRouteImport.update({
+  id: '/auction',
+  path: '/auction',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -43,6 +49,7 @@ const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auction': typeof AuctionRoute
   '/websocket-test': typeof WebsocketTestRoute
   '/api/demo-names': typeof ApiDemoNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auction': typeof AuctionRoute
   '/websocket-test': typeof WebsocketTestRoute
   '/api/demo-names': typeof ApiDemoNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auction': typeof AuctionRoute
   '/websocket-test': typeof WebsocketTestRoute
   '/api/demo-names': typeof ApiDemoNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -67,6 +76,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auction'
     | '/websocket-test'
     | '/api/demo-names'
     | '/demo/start/api-request'
@@ -74,6 +84,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auction'
     | '/websocket-test'
     | '/api/demo-names'
     | '/demo/start/api-request'
@@ -81,6 +92,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/auction'
     | '/websocket-test'
     | '/api/demo-names'
     | '/demo/start/api-request'
@@ -89,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuctionRoute: typeof AuctionRoute
   WebsocketTestRoute: typeof WebsocketTestRoute
   ApiDemoNamesRoute: typeof ApiDemoNamesRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
@@ -102,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/websocket-test'
       fullPath: '/websocket-test'
       preLoaderRoute: typeof WebsocketTestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auction': {
+      id: '/auction'
+      path: '/auction'
+      fullPath: '/auction'
+      preLoaderRoute: typeof AuctionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -137,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuctionRoute: AuctionRoute,
   WebsocketTestRoute: WebsocketTestRoute,
   ApiDemoNamesRoute: ApiDemoNamesRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
