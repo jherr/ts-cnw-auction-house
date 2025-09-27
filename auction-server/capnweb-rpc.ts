@@ -75,7 +75,6 @@ export const clients = new Map<string, Function>();
 // Auction Server Implementation (one per connection)
 export class AuctionServer extends RpcTarget {
   public currentUsername: string | null = null;
-  private clientCallback: Function | null = null;
   private webSocket: WebSocket | null = null;
 
   constructor() {

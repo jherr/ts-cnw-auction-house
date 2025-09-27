@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React from "react";
 import type { Notification } from "../hooks/useAuctionMessages";
 
 interface NotificationsFeedProps {
@@ -10,15 +10,7 @@ export function NotificationsFeed({
   notifications,
   onClearNotifications,
 }: NotificationsFeedProps) {
-  const notificationsEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    notificationsEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [notifications]);
+  // Removed auto-scroll behavior to prevent scroll-jacking
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
@@ -112,7 +104,6 @@ export function NotificationsFeed({
             </div>
           </div>
         ))}
-        <div ref={notificationsEndRef} />
       </div>
 
       <div className="mt-4 pt-4 border-t border-gray-600 text-center">
