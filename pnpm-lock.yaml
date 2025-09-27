@@ -32,6 +32,9 @@ importers:
       '@types/ws':
         specifier: ^8.18.1
         version: 8.18.1
+      capnweb:
+        specifier: ^0.1.0
+        version: 0.1.0
       react:
         specifier: ^19.0.0
         version: 19.1.1
@@ -1031,6 +1034,9 @@ packages:
 
   caniuse-lite@1.0.30001745:
     resolution: {integrity: sha512-ywt6i8FzvdgrrrGbr1jZVObnVv6adj+0if2/omv9cmR2oiZs30zL4DIyaptKcbOrBdOIc74QTMoJvSE2QHh5UQ==}
+
+  capnweb@0.1.0:
+    resolution: {integrity: sha512-+pygKx1JFTZTRdd1hHgaBRg5BwULEDZq8ZoHXkYP2GXNV3lrjXLj5qzlGz+SgBCJjWUmNBtlh7JPWdr0wIbY8w==}
 
   chai@5.3.3:
     resolution: {integrity: sha512-4zNhdJD/iOjSH0A05ea+Ke6MU5mmpQcbQsSOkgdaUMJ9zTlDTD/GYlwohmIE2u0gaxHYiVHEn1Fw9mZ/ktJWgw==}
@@ -2901,6 +2907,8 @@ snapshots:
   cac@6.7.14: {}
 
   caniuse-lite@1.0.30001745: {}
+
+  capnweb@0.1.0: {}
 
   chai@5.3.3:
     dependencies:
